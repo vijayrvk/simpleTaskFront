@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+
+<!-- form card start -->
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Users</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- table data for view -->
+
+    <div class="file-item" style="height: unset">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>LoginID</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users;let i=index">
+          <td>
+
+            {{user.name}}
+          </td>
+          <td>
+            {{user.loginId}}
+          </td>
+          <td>
+            {{getRoleName(user.roleId)}}
+          </td>
+          <td>
+            <a (click)="editData(user)"><i class="fa fa-edit"></i></a>
+          </td>
+
+
+        </tr>
+
+        </tbody>
+      </table>
+    </div><!-- file-item -->
+    <!-- table end-->
+  </div>
+</div>

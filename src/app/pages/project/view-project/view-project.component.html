@@ -1,0 +1,63 @@
+
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Project List</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- table data for view -->
+
+    <div class="file-item" style="height: unset">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let proj of projects">
+          <td>
+
+            {{proj.name}}
+          </td>
+          <td>
+            {{proj.startDate | date: "mediumDate"}}
+          </td>
+          <td>
+            {{proj.endDate | date: "mediumDate"}}
+          </td>
+          <td>
+            <a (click)="editProject(proj)"><i class="fa fa-edit"></i></a>
+          </td>
+
+
+        </tr>
+
+        </tbody>
+      </table>
+    </div><!-- file-item -->
+    <!-- table end-->
+
+    <div class="table-pagination-block" *ngIf="projects.length > 0">
+        <div class="row">            
+          <div class="col-md-12">
+              <div>
+                  <ngb-pagination id="paginate" class="d-flex justify-content-end" [collectionSize]="pagination.total"
+                      [(page)]="pagination.offset" [rotate]="true" [maxSize]="pagination.maxsize" [boundaryLinks]="true"
+                      size="sm" (pageChange)="pageChange(pagination.offset)">
+                  </ngb-pagination>
+              </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>

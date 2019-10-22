@@ -1,0 +1,100 @@
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Edit Project</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- form card start -->
+    <div class="section-wrapper container">
+
+      <!-- form starts here -->
+      <div class="form-layout" [formGroup]='projectCreateForm'>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Name: <span class="tx-danger">*</span></label>
+              <input class="form-control" placeholder="Name" formControlName='name' name='name' type="text">
+              <small class="form-text text-muted invalid-data"
+                *ngIf="projectCreateForm.controls['name'].invalid && (projectCreateForm.controls['name'].dirty || projectCreateForm.controls['name'].touched)"
+                class="invalid-data">
+                Please enter valid name
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Description: <span class="tx-danger">*</span></label>
+              <textarea row="3" class="form-control" placeholder="Description" formControlName='description'
+                name='description' type="description">
+              </textarea>
+              <small class="form-text text-muted invalid-data"
+                *ngIf="projectCreateForm.controls['description'].invalid && (projectCreateForm.controls['description'].dirty || projectCreateForm.controls['description'].touched)"
+                class="invalid-data">
+                Please enter valid description
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+                <label class="form-control-label">Start Date: <span class="tx-danger">*</span></label>
+              <input class="form-control" ngbDatepicker (click)="datePicker1.toggle()" #datePicker1="ngbDatepicker"
+                     formControlName="startDate" placeholder="yyyy-mm-dd">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="projectCreateForm.controls['startDate'].invalid && (projectCreateForm.controls['startDate'].dirty || projectCreateForm.controls['startDate'].touched)"
+                     class="invalid-data">
+                Please enter valid start date
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+                <label class="form-control-label">End Date: <span class="tx-danger">*</span></label>
+              <input class="form-control" ngbDatepicker (click)="datePicker2.toggle()" #datePicker2="ngbDatepicker"
+                     formControlName="endDate" placeholder="yyyy-mm-dd">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="projectCreateForm.controls['endDate'].invalid && (projectCreateForm.controls['endDate'].dirty || projectCreateForm.controls['endDate'].touched)"
+                     class="invalid-data">
+                Please enter valid end date
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label">
+                  billable: <span class="tx-danger">*</span>
+                  <label class="switch pull-right">
+                    <input type="checkbox" formControlName="billable">
+                    <span class="slider round"></span>
+                  </label>
+  
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Estimated Days: <span class="tx-danger">*</span></label>
+                <input class="form-control" placeholder="Days" formControlName='estimatedDays' name='name' type="number">
+                <small class="form-text text-muted invalid-data"
+                  *ngIf="projectCreateForm.controls['estimatedDays'].invalid && (projectCreateForm.controls['estimatedDays'].dirty || projectCreateForm.controls['estimatedDays'].touched)"
+                  class="invalid-data">
+                  Please enter number
+                </small>
+              </div>
+            </div>
+          <!-- form end here -->
+        </div>
+        <!-- form card end -->
+      </div>
+      <div class="form-layout-footer">
+        <button class="btn btn-secondary bd-0" routerLink="/view-project">Cancel</button>
+        <button class="btn btn-primary bd-0" (click)='createProject(projectCreateForm.value)'>Update Project</button>
+      </div>
+    </div>
+  </div>
+</div>

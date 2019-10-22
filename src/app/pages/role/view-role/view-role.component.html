@@ -1,0 +1,51 @@
+<!--<app-header></app-header>-->
+<!--<p *ngFor="let i of roles">-->
+<!--  {{i | json}}-->
+<!--</p>-->
+
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Roles List</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- table data for view -->
+
+    <div class="file-item" style="height: unset">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>CreatedAt</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let location of roles">
+          <td>
+
+            {{location.name}}
+          </td>
+          <td>
+            {{util.convertTime(location.createdAt)}}
+          </td>
+          <td>
+            <a (click)="editCategory(location)"><i class="fa fa-edit"></i></a>
+          </td>
+
+
+        </tr>
+
+        </tbody>
+      </table>
+    </div><!-- file-item -->
+    <!-- table end-->
+
+
+  </div>
+</div>

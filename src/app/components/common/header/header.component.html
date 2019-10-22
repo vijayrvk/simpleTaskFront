@@ -1,0 +1,95 @@
+<div class="slim-header">
+  <div class="container">
+    <div class="slim-header-left">
+      <h2 class="slim-logo"><a routerLink="/view-project">API Registration</a></h2>
+    </div><!-- slim-header-left -->
+    <div class="slim-header-right">
+
+      <div class="dropdown dropdown-c">
+        <a href="#" class="logged-user" data-toggle="dropdown">
+          <img src="/assets/img/user.png" alt="profile-pic">
+          <span>{{name}}</span>
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <nav class="nav">
+            <a routerLink="/" (click)="signout()" class="nav-link"><i class="icon ion-forward"></i> Sign Out</a>
+          </nav>
+        </div><!-- dropdown-menu -->
+      </div><!-- dropdown -->
+    </div><!-- header-right -->
+  </div><!-- container -->
+</div>
+
+<div class="slim-navbar">
+  <div class="container">
+    <ul class="nav">
+
+      <li class="nav-item with-sub mega-dropdown" [hidden]="!checkModuleHasPermission('project')"
+          [style.border-right]="!checkModuleHasPermission('user')?'1px solid #dee2e6':''">
+        <a class="nav-link">
+          <i class="icon fa fa-bell"></i>
+          <span>Projects</span>
+        </a>
+        <div class="sub-item">
+          <div class="row">
+
+
+            <div class="col-lg mg-t-30 mg-lg-t-0"
+                 *ngIf="needToCheckAccess('/create-project') || needToCheckAccess('/view-project')">
+              <div class="row">
+                <div class="col">
+                  <ul>
+                    <li><a routerLink="/create-project" [hidden]="!needToCheckAccess('/create-project')">Create Project</a></li>
+                    <li><a routerLink="/view-project" [hidden]="!needToCheckAccess('/view-project')">View Project</a></li>
+                  </ul>
+                </div><!-- col -->
+              </div><!-- row -->
+            </div><!-- col -->
+          </div><!-- row -->
+        </div><!-- dropdown-menu -->
+      </li>
+      <li class="nav-item with-sub mega-dropdown" [hidden]="!checkModuleHasPermission('user')"
+          [style.border-right]="!checkModuleHasPermission('checklist')?'1px solid #dee2e6':''">
+        <a class="nav-link">
+          <i class="icon fa fa-thumbs-up"></i>
+          <span>User</span>
+        </a>
+        <div class="sub-item">
+          <div class="row">
+
+
+
+
+
+            <div class="col-lg mg-t-30 mg-lg-t-0"
+                 *ngIf="needToCheckAccess('/create-user') || needToCheckAccess('/view-user')">
+              <div class="row">
+                <div class="col">
+                  <ul>
+                    <li><a routerLink="/create-user" [hidden]="!needToCheckAccess('/create-user')">Create User</a>
+                    </li>
+                    <li><a routerLink="/view-user" [hidden]="!needToCheckAccess('/view-user')">View User</a></li>
+                  </ul>
+                </div><!-- col -->
+              </div><!-- row -->
+            </div><!-- col -->
+            <div class="col-lg mg-t-30 mg-lg-t-0" *ngIf="needToCheckAccess('/create-role') || needToCheckAccess('/view-role')">
+              <div class="row">
+                <div class="col">
+                  <ul>
+                    <li><a routerLink="/create-role" [hidden]="!needToCheckAccess('/create-role')">Create Role</a>
+                    </li>
+                    <li><a routerLink="/view-role" [hidden]="!needToCheckAccess('/view-role')">View Role</a></li>
+                  </ul>
+                </div><!-- col -->
+              </div><!-- row -->
+            </div><!-- col -->
+          </div><!-- row -->
+
+        </div><!-- dropdown-menu -->
+      </li>
+    </ul>
+  </div><!-- container -->
+</div>
+

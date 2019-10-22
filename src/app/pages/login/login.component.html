@@ -1,0 +1,34 @@
+<div class="col-lg-12">
+  <div class="col-lg-12">
+
+    <div>
+      <h3 class="signin-title-secondary">Sign in to continue.</h3>
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <input type="this.loginForm.controls['loginId']" class="form-control"
+                 [class]="!(this.loginForm.controls['loginId'] && this.loginForm.controls['loginId'].invalid && (this.loginForm.controls['loginId'].dirty || this.loginForm.controls['loginId'].touched))?'form-control':'form-control is-invalid'"
+                 placeholder="Enter your username" formControlName="loginId">
+          <small class="form-text text-muted invalid-data"
+                 *ngIf="loginForm.controls['loginId'].invalid && (loginForm.controls['loginId'].dirty || loginForm.controls['loginId'].touched)"
+                 class="invalid-data">
+            Please enter username
+          </small>
+        </div><!-- form-group -->
+        <div class="form-group mg-b-20">
+          <input type="password" formControlName="password"
+                 [class]="!(this.loginForm.controls['password'] && this.loginForm.controls['password'].invalid && (this.loginForm.controls['password'].dirty || this.loginForm.controls['password'].touched))?'form-control':'form-control is-invalid'"
+                 placeholder="Enter your password">
+          <small class="form-text text-muted invalid-data"
+                 *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+                 class="invalid-data">
+            Please enter password
+          </small>
+        </div><!-- form-group -->
+        <button class="btn btn-primary btn-block btn-signin" type="submit" (click)="login(this.loginForm.value)"
+                [disabled]="!loginForm.valid">Sign In
+        </button>
+      </form>
+    </div>
+
+  </div><!-- signin-right -->
+</div><!-- d-flex -->

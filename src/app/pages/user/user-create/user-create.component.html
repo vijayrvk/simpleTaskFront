@@ -1,0 +1,118 @@
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Create User</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- form card start -->
+    <div class="section-wrapper container">
+
+      <!-- form starts here -->
+      <div class="form-layout" [formGroup]='userCreateForm'>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Name: <span class="tx-danger">*</span></label>
+              <input class="form-control" placeholder="Name" formControlName='name' name='name' type="text">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="userCreateForm.controls['name'].invalid && (userCreateForm.controls['name'].dirty || userCreateForm.controls['name'].touched)"
+                     class="invalid-data">
+                Please enter valid name
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Login Id: <span class="tx-danger">*</span></label>
+              <input class="form-control" placeholder="Login id" formControlName='loginId' name='loginId' type="text">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="userCreateForm.controls['loginId'].invalid && (userCreateForm.controls['loginId'].dirty || userCreateForm.controls['loginId'].touched)"
+                     class="invalid-data">
+                Please enter valid loginId
+              </small>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Password: <span class="tx-danger">*</span></label>
+              <input class="form-control" placeholder="Password" formControlName='password' name='password'
+                     type="password">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="userCreateForm.controls['password'].invalid && (userCreateForm.controls['password'].dirty || userCreateForm.controls['password'].touched)"
+                     class="invalid-data">
+                Please enter valid password
+              </small>
+
+              <small class="form-text text-muted invalid-data" *ngIf="userCreateForm.get('password').hasError('pattern')"
+                class="invalid-data">
+                Password should minimum 8 characters, lowercase, uppercase, numbers.
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Role: <span class="tx-danger">*</span></label>
+              <select class="form-control" formControlName='roleId' name='role'>
+                <option value=''>select role</option>
+                <option *ngFor="let role of roles" value="{{role._id}}">{{role.name}}</option>
+              </select>
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="userCreateForm.controls['roleId'].invalid && (userCreateForm.controls['roleId'].dirty || userCreateForm.controls['roleId'].touched)"
+                     class="invalid-data">
+                Please enter valid roleId
+              </small>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="form-control-label">Modules:
+                <span class="tx-danger">*</span>
+              </label>
+  
+              <select class="form-control" multiple formControlName='modules' name='modules'>
+  
+                <option value="user">User</option>
+                <option value="project">Project</option>
+  
+              </select>
+              <small class="form-text text-muted invalid-data"
+                *ngIf="userCreateForm.controls['modules'].invalid && (userCreateForm.controls['modules'].dirty || userCreateForm.controls['modules'].touched)"
+                class="invalid-data">
+                Please select Modules
+              </small>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Is Active: <span class="tx-danger">*</span></label>
+              <select class="form-control" formControlName='isActive' name='isActive'>
+                <option value=''>select is Active</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="userCreateForm.controls['isActive'].invalid && (userCreateForm.controls['isActive'].dirty || userCreateForm.controls['isActive'].touched)"
+                     class="invalid-data">
+                Please select valid isActive
+              </small>
+            </div>
+          </div>
+
+          <!-- form end here -->
+        </div>
+        <!-- form card end -->
+      </div>
+      <div class="form-layout-footer">
+        <button class="btn btn-secondary bd-0" routerLink="/user-view">Cancel</button>
+        <button class="btn btn-primary bd-0" (click)='userCreate(userCreateForm.value)'>Create User</button>
+      </div>
+    </div>

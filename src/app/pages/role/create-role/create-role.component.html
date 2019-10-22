@@ -1,0 +1,136 @@
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Create Role</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- form card start -->
+    <div class="section-wrapper container">
+
+      <!-- form starts here -->
+      <div class="form-layout">
+        <div class="row" [formGroup]='createRoleForm'>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Name:
+                <span class="tx-danger">*</span>
+              </label>
+              <input class="form-control" placeholder="Name" formControlName='name' name='name' type="text">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="createRoleForm.controls['name'].invalid && (createRoleForm.controls['name'].dirty || createRoleForm.controls['name'].touched)"
+                     class="invalid-data">
+                Please enter name
+              </small>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Is Active:
+                <span class="tx-danger">*</span>
+              </label>
+              <select class="form-control" formControlName='isActive' name='isActive'>
+                <option value=''>select is Active</option>
+                <option value='true'>Yes</option>
+                <option value='false'>No</option>
+              </select>
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="createRoleForm.controls['isActive'].invalid && (createRoleForm.controls['isActive'].dirty || createRoleForm.controls['isActive'].touched)"
+                     class="invalid-data">
+                Please select isActive
+              </small>
+            </div>
+          </div>
+
+          <!-- form end here -->
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div id="accordion" class="accordion-one" role="tablist" aria-multiselectable="true" data-toggle="collapse" data-target="#collapsesFour" aria-expanded="true" aria-controls="collapseOne">
+              <div class="card">
+                <div class="card " [hidden]="!util.checkModuleHasPermission('user')">
+                  <div class="card-header" role="tab" id="headingFour">
+                    <a>
+                      <div class="col-lg-6">
+                        <label class="ckbox">
+                          User
+                        </label>
+                    </div>
+
+                    </a>
+                  </div>
+                  <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="card-body">
+
+                      <label><b>User</b></label>
+                      <div class="row">
+                        <div class="col-lg-3">
+                          <label class="ckbox">
+                            <input type="checkbox" [(ngModel)]="access.user.create"><span>Create</span>
+                          </label>
+                        </div>
+                        <div class="col-lg-3">
+                          <label class="ckbox">
+                            <input type="checkbox" [(ngModel)]="access.user.view"><span>View</span>
+                          </label>
+                        </div>
+                        <div class="col-lg-3">
+                          <label class="ckbox">
+                            <input type="checkbox" [(ngModel)]="access.user.edit"><span>Edit</span>
+                          </label>
+                        </div>
+                      </div>
+                     </div>
+                  </div><!-- collapse -->
+                </div><!-- card -->
+              </div>
+              <div class="card " [hidden]="!util.checkModuleHasPermission('project')">
+                <div class="card-header" role="tab" id="headingFour">
+                  <a>
+                    <label class="ckbox">
+                      Project
+                    </label>
+
+                  </a>
+                </div>
+                <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingFour">
+                  <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="ckbox">
+                          <input type="checkbox" [(ngModel)]="access.project.create"><span>Create</span>
+                        </label>
+                      </div>
+                      <div class="col-lg-3">
+                        <label class="ckbox">
+                          <input type="checkbox" [(ngModel)]="access.project.view"><span>View</span>
+                        </label>
+                      </div>
+                      <div class="col-lg-3">
+                        <label class="ckbox">
+                          <input type="checkbox" [(ngModel)]="access.project.edit"><span>Edit</span>
+                        </label>
+                      </div>
+                    </div>
+                   </div>
+                </div><!-- collapse -->
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="form-layout-footer">
+            <button class="btn btn-secondary bd-0 ">Cancel</button>
+            <button class="btn btn-primary bd-0 left-10" (click)='createRole(createRoleForm.value)'>Submit</button>
+
+          </div>
+          <!-- form card end -->
+        </div>
+      </div>
